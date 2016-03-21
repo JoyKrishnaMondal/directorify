@@ -8,7 +8,7 @@ chokidar = require "chokidar"
 
 delimit = (require 'path').sep
 
-{ShowList,CopyDefaults,minDefault} = require "node-helpers"
+{ShowList,CopyDefaults,minDefaults} = require "node-helpers"
 
 {SeparateFilesAndDir} = require "SeparateFilesAndDirectories"
 
@@ -163,7 +163,7 @@ if require.main is module
 
 	else
 
-		minDefault Options.directorify,Defaults
+		minDefaults Options.directorify,Defaults
 
 		Main Options
 
