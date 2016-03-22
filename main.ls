@@ -16,6 +16,8 @@ lo = require "lodash"
 
 colors = require "colors"
 
+babelify = require "babelify"
+
 pathResolve = (require "path").resolve
 
 ErrorMain = (ConfigFileName) -> "Error: 'directorify' key is not populated in #{ConfigFileName}, please check docs for help."
@@ -49,7 +51,7 @@ Compile = (Options) -> ->
 
 	if not (Options.babelify is undefined)
 
-		b = b.transform "babelify",Options.babelify
+		b = b.transform babelify,babelify.Options
 
 	b = b.exclude directorify.exclude
 
@@ -57,7 +59,7 @@ Compile = (Options) -> ->
 
 	if problem
 
-		log red problem.toString! + "\n"
+		log yellow "Browserify: " + red problem.toString! + "\n"
 
 		return
 	
