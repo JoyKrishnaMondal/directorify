@@ -37,7 +37,7 @@
       }
       b = browserify(directorify.inputFile, Options.browserify);
       if (!(Options.babelify === undefined)) {
-        b = b.transform(babelify, babelify.Options);
+        b = b.transform(babelify, Options.babelify);
       }
       b = b.exclude(directorify.exclude);
       return b.bundle(function(problem, buff){
