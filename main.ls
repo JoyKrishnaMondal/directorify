@@ -51,7 +51,7 @@ Compile = (Options) -> ->
 
 	if not (Options.babelify is undefined)
 
-		b = b.transform babelify,babelify.Options
+		b = b.transform babelify,Options.babelify
 
 	b = b.exclude directorify.exclude
 
