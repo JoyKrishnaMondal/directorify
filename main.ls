@@ -84,7 +84,7 @@ Compile = (Options) -> ->
 	return
 
 
-Main = (Options) ->
+SourceDirWatch = (Options) ->
 
 	{directorify} = Options
 
@@ -106,9 +106,6 @@ Main = (Options) ->
 
 	for I in JustFiles
 
-		
-		
-
 		watcher = chokidar.watch pathResolve (directorify.compile + delimit + I + directorify.Target)
 
 		watcher.on "change",Fn
@@ -117,9 +114,25 @@ Main = (Options) ->
 
 	return
 
+Main = (Options) ->
+
+	{directorify} = Options
+
+	if directorify.source is undefined
+		
+		Fn = Compile Options
+
+		watcher = chokidar.watch pathResolve directorify.inputFile
+
+		watcher.on "change",Fn
+
+		Fn!
+
+	else
+
+		SourceDirWatch Options
 
 {isString,isNumber} = lo
-
 
 AssumedDir = (type:isString,value:"./")
 
@@ -127,7 +140,7 @@ Defaults =
 	*inputFile:(type:isString)
 		saveFile:(type:isString)
 		source:AssumedDir
-		compile:AssumedDir
+		Compile:AssumedDir
 		exclude:
 			type:isString
 			value:""
