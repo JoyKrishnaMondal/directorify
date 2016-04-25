@@ -1,0 +1,41 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'uninstall',
+1 verbose cli   '-g',
+1 verbose cli   'directorify' ]
+2 info using npm@2.15.1
+3 info using node@v4.4.3
+4 verbose unbuild node_modules\directorify
+5 info preuninstall directorify@0.0.1
+6 info uninstall directorify@0.0.1
+7 verbose unbuild rmStuff directorify@0.0.1 from C:\Users\joyk\AppData\Roaming\npm\node_modules
+8 silly gentlyRm C:\Users\joyk\AppData\Roaming\npm\directorify.cmd is being gently removed
+9 silly gentlyRm verifying C:\Users\joyk\AppData\Roaming\npm is an npm working directory
+10 silly gentlyRm containing path C:\Users\joyk\AppData\Roaming\npm is under npm's control, in C:\Users\joyk\AppData\Roaming\npm
+11 silly gentlyRm deletion target C:\Users\joyk\AppData\Roaming\npm\directorify.cmd is under C:\Users\joyk\AppData\Roaming\npm
+12 verbose gentlyRm vacuuming from C:\Users\joyk\AppData\Roaming\npm\directorify.cmd up to C:\Users\joyk\AppData\Roaming\npm
+13 silly gentlyRm C:\Users\joyk\AppData\Roaming\npm\directorify is being gently removed
+14 silly gentlyRm verifying C:\Users\joyk\AppData\Roaming\npm is an npm working directory
+15 silly gentlyRm containing path C:\Users\joyk\AppData\Roaming\npm is under npm's control, in C:\Users\joyk\AppData\Roaming\npm
+16 silly gentlyRm deletion target C:\Users\joyk\AppData\Roaming\npm\directorify is under C:\Users\joyk\AppData\Roaming\npm
+17 verbose gentlyRm vacuuming from C:\Users\joyk\AppData\Roaming\npm\directorify up to C:\Users\joyk\AppData\Roaming\npm
+18 info postuninstall directorify@0.0.1
+19 silly gentlyRm C:\Users\joyk\AppData\Roaming\npm\node_modules\directorify is being purged from base C:\Users\joyk\AppData\Roaming\npm
+20 verbose gentlyRm don't care about contents; nuking C:\Users\joyk\AppData\Roaming\npm\node_modules\directorify
+21 silly vacuum-fs purging C:\Users\joyk\AppData\Roaming\npm\node_modules\directorify
+22 verbose stack Error: EBUSY: resource busy or locked, rmdir 'C:\Users\joyk\AppData\Roaming\npm\node_modules\directorify'
+22 verbose stack     at Error (native)
+23 verbose cwd C:\working\directorify
+24 error Windows_NT 6.2.9200
+25 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "uninstall" "-g" "directorify"
+26 error node v4.4.3
+27 error npm  v2.15.1
+28 error path C:\Users\joyk\AppData\Roaming\npm\node_modules\directorify
+29 error code EBUSY
+30 error errno -4082
+31 error syscall rmdir
+32 error EBUSY: resource busy or locked, rmdir 'C:\Users\joyk\AppData\Roaming\npm\node_modules\directorify'
+33 error If you need help, you may report this error at:
+33 error     <https://github.com/npm/npm/issues>
+34 verbose exit [ -4082, true ]

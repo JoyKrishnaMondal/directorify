@@ -36,6 +36,7 @@
         Options.browserify = {};
       }
       b = browserify(directorify.inputFile, Options.browserify);
+      b.require(directorify.inputFile);
       if (!(Options.babelify === undefined)) {
         b = b.transform(babelify, Options.babelify);
       }

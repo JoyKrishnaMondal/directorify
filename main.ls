@@ -50,6 +50,8 @@ Compile = (Options) -> ->
 
 	b = browserify (directorify.inputFile),Options.browserify
 
+	b.require directorify.inputFile
+
 	if not (Options.babelify is undefined)
 
 		b = b.transform babelify,Options.babelify
