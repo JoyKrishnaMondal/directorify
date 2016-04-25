@@ -39,6 +39,7 @@ isDirectory = (path_string) -> fs.lstatSync(path_string).isDirectory!
 
 Compile = (Options) -> ->
 
+
 	{yellow,green,red} = colors
 
 	{directorify} = Options
@@ -76,7 +77,6 @@ Compile = (Options) -> ->
 	Text = yellow "directorify|:" + green directorify.count + yellow "| "  + green directorify.inputFile +  yellow " -> " + green directorify.saveFile
 
 	log Text
-	
 
 
 	directorify.count += 1
@@ -90,7 +90,7 @@ SourceDirWatch = (Options) ->
 
 	{Files} <-! SeparateFilesAndDir directorify.source
 
-	RegEx = new RegExp "(.*)\." + directorify.Ext
+	RegEx = new RegExp "(.*)\." + directorify.ext
 
 	JustFiles = []
 
@@ -106,7 +106,9 @@ SourceDirWatch = (Options) ->
 
 	for I in JustFiles
 
-		watcher = chokidar.watch pathResolve (directorify.compile + delimit + I + directorify.Target)
+		# console.log pathResolve (directorify.compile + delimit + I + directorify.target)
+
+		watcher = chokidar.watch pathResolve (directorify.compile + delimit + I + directorify.target)
 
 		watcher.on "change",Fn
 
@@ -119,7 +121,9 @@ Main = (Options) ->
 	{directorify} = Options
 
 	if directorify.source is undefined
-		
+
+		minDefaults Options.directorify,Defaults
+
 		Fn = Compile Options
 
 		watcher = chokidar.watch pathResolve directorify.inputFile
@@ -129,6 +133,8 @@ Main = (Options) ->
 		Fn!
 
 	else
+
+		minDefaults Options.directorify,Defaults
 
 		SourceDirWatch Options
 
@@ -140,14 +146,14 @@ Defaults =
 	*inputFile:(type:isString)
 		saveFile:(type:isString)
 		source:AssumedDir
-		Compile:AssumedDir
+		compile:AssumedDir
 		exclude:
 			type:isString
 			value:""
-		Ext:
+		ext:
 			type:isString
 			value:"ls"
-		Target:
+		target:
 			type:isString
 			value:".js"
 		count:
@@ -177,8 +183,6 @@ if require.main is module
 		console.log colors.red ErrorMain ConfigFile
 
 	else
-
-		minDefaults Options.directorify,Defaults
 
 		Main Options
 

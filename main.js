@@ -65,7 +65,7 @@
     return SeparateFilesAndDir(directorify.source, function(arg$){
       var Files, RegEx, JustFiles, i$, len$, I, Anly, Fn, watcher;
       Files = arg$.Files;
-      RegEx = new RegExp("(.*)." + directorify.Ext);
+      RegEx = new RegExp("(.*)." + directorify.ext);
       JustFiles = [];
       for (i$ = 0, len$ = Files.length; i$ < len$; ++i$) {
         I = Files[i$];
@@ -77,7 +77,7 @@
       Fn = Compile(Options);
       for (i$ = 0, len$ = JustFiles.length; i$ < len$; ++i$) {
         I = JustFiles[i$];
-        watcher = chokidar.watch(pathResolve(directorify.compile + delimit + I + directorify.Target));
+        watcher = chokidar.watch(pathResolve(directorify.compile + delimit + I + directorify.target));
         watcher.on("change", Fn);
       }
       Fn();
@@ -88,11 +88,13 @@
     var directorify, Fn, watcher;
     directorify = Options.directorify;
     if (directorify.source === undefined) {
+      minDefaults(Options.directorify, Defaults);
       Fn = Compile(Options);
       watcher = chokidar.watch(pathResolve(directorify.inputFile));
       watcher.on("change", Fn);
       return Fn();
     } else {
+      minDefaults(Options.directorify, Defaults);
       return SourceDirWatch(Options);
     }
   };
@@ -109,16 +111,16 @@
       type: isString
     },
     source: AssumedDir,
-    Compile: AssumedDir,
+    compile: AssumedDir,
     exclude: {
       type: isString,
       value: ""
     },
-    Ext: {
+    ext: {
       type: isString,
       value: "ls"
     },
-    Target: {
+    target: {
       type: isString,
       value: ".js"
     },
@@ -142,7 +144,6 @@
     if (Options.directorify === undefined) {
       console.log(colors.red(ErrorMain(ConfigFile)));
     } else {
-      minDefaults(Options.directorify, Defaults);
       Main(Options);
     }
   } else {
